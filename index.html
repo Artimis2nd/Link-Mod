@@ -350,7 +350,7 @@
                 filteredData.sort((a, b) => {
                     const dateA = a.update_date || new Date(0);
                     const dateB = b.update_date || new Date(0);
-                    return dateA - dateB;
+                    return modData.indexOf(b) - modData.indexOf(a);
                 });
             }
             
@@ -515,5 +515,6 @@
     </script>
 </body>
 </html>
+
 
 
