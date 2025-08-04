@@ -347,10 +347,10 @@
             if (sortMethod === 'alphabetical') {
                 filteredData.sort((a, b) => a.mod_name.localeCompare(b.mod_name));
             } else if (sortMethod === 'date') {
-                filteredData.sort((b, a) => {
+                filteredData.sort((a, b) => {
                     const dateA = a.update_date || new Date(0);
                     const dateB = b.update_date || new Date(0);
-                    return dateB - dateA;
+                    return dateA - dateB;
                 });
             }
             
@@ -515,4 +515,5 @@
     </script>
 </body>
 </html>
+
 
