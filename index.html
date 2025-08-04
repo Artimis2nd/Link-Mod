@@ -207,8 +207,8 @@
                 <input type="text" id="search" placeholder="ค้นหา Mod...">
                 <label for="sort">เรียงตาม:</label>
                 <select id="sort" class="sort-options">
-                    <option value="date">วันที่อัพเดท (ใหม่สุด)</option>
                     <option value="alphabetical">ตัวอักษร (A-Z)</option>
+                    <option value="date">วันที่อัพเดท (ใหม่สุด)</option>
                 </select>
             </div>
         </div>
@@ -344,13 +344,13 @@
             
             // เรียงลำดับ
             const sortMethod = sortSelect.value;
-            if (sortMethod === 'date') {
+            if (sortMethod === 'alphabetical') {
+                filteredData.sort((a, b) => a.mod_name.localeCompare(b.mod_name));
+            } else if (sortMethod === 'date') {
                 filteredData.sort((a, b) => {
                     const dateA = a.update_date || new Date(0);
                     const dateB = b.update_date || new Date(0);
-                    return modData.indexOf(b) - modData.indexOf(a);
-            } else if (sortMethod === 'alphabetical') {
-                filteredData.sort((a, b) => a.mod_name.localeCompare(b.mod_name));
+                    return dateB - dateA;
                 });
             }
             
@@ -515,8 +515,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
