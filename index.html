@@ -399,7 +399,11 @@
         function showModDetails(mod) {
             modalImage.src = `https://tinfoil.media/thi/${mod.build_id}/0/0/`;
             modalImage.onerror = () => {
-                modalImage.style.display = 'none';
+                // ถ้าโหลดจาก tinfoil ไม่ได้ → ลองโหลดจาก local images
+                modalImage.onerror = () => {
+                    modalImage.style.display = 'none'; // ถ้า local ก็ไม่มี → ซ่อนไปเลย
+                };
+                modalImage.src = `images/${mod.build_id}.jpg`;
             };
             
             modalName.textContent = mod.mod_name || '-';
@@ -480,6 +484,7 @@
     </script>
 </body>
 </html>
+
 
 
 
