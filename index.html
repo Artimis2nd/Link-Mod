@@ -362,10 +362,12 @@
             img.src = `https://tinfoil.media/thi/${mod.build_id}/0/0/`;
             img.alt = mod.mod_name;
             img.onerror = () => {
-                imageContainer.textContent = 'ไม่มีรูปภาพ';
-                imageContainer.style.display = 'flex';
-                imageContainer.style.alignItems = 'center';
-                imageContainer.style.justifyContent = 'center';
+                // ถ้าโหลดจาก tinfoil ไม่ได้ ให้เปลี่ยนเป็นรูปที่เก็บใน GitHub
+                img.onerror = () => {
+                    // ถ้า GitHub ก็ไม่มี → รูปสุดท้ายที่ไม่สำเร็จ
+                    img.src = 'images/default.jpg'; // รูป placeholder สุดท้าย
+                };
+                img.src = `images/${mod.build_id}.jpg`;
             };
             
             imageContainer.appendChild(img);
@@ -478,6 +480,7 @@
     </script>
 </body>
 </html>
+
 
 
 
